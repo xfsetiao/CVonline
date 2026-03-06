@@ -821,6 +821,68 @@
             </div>
         </div>
 
+        <!-- NOUVEAU : Modal Choix Messagerie -->
+        <div id="modal-mail-choice" class="hidden bg-[#050505] w-full max-w-md modal-enter relative border border-gray-800" role="dialog" aria-modal="true">
+            <div class="absolute top-0 left-0 w-full h-1 bg-white"></div>
+            <div class="p-8 sm:p-10 relative z-10 text-center">
+                <h3 class="text-2xl font-black text-white uppercase tracking-tight mb-8">Envoyer via...</h3>
+                <div class="space-y-4">
+                    <button onclick="sendVia('default')" class="w-full bg-white text-black font-bold py-4 px-6 text-xs uppercase tracking-widest hover:bg-gray-200 transition-colors flex items-center justify-center gap-3">
+                        <i class="ph-bold ph-envelope-simple text-lg"></i> App par défaut
+                    </button>
+                    <button onclick="sendVia('gmail')" class="w-full bg-transparent border border-gray-700 text-white font-bold py-4 px-6 text-xs uppercase tracking-widest hover:border-white transition-colors flex items-center justify-center gap-3">
+                        <i class="ph-bold ph-google-logo text-lg"></i> Gmail (Web)
+                    </button>
+                    <button onclick="sendVia('outlook')" class="w-full bg-transparent border border-gray-700 text-white font-bold py-4 px-6 text-xs uppercase tracking-widest hover:border-white transition-colors flex items-center justify-center gap-3">
+                        <i class="ph-bold ph-windows-logo text-lg"></i> Outlook (Web)
+                    </button>
+                    <button onclick="sendVia('yahoo')" class="w-full bg-transparent border border-gray-700 text-white font-bold py-4 px-6 text-xs uppercase tracking-widest hover:border-white transition-colors flex items-center justify-center gap-3">
+                        <i class="ph-bold ph-envelope-open text-lg"></i> Yahoo (Web)
+                    </button>
+                    
+                    <!-- Ligne de séparation subtile -->
+                    <div class="w-full h-px bg-gray-800 my-2"></div>
+                    
+                    <!-- Bouton Copier (Option universelle) -->
+                    <button onclick="sendVia('copy')" class="w-full bg-transparent border border-dashed border-gray-600 text-gray-400 font-bold py-4 px-6 text-xs uppercase tracking-widest hover:text-white hover:border-white transition-colors flex items-center justify-center gap-3">
+                        <i class="ph-bold ph-copy text-lg"></i> Copier les infos
+                    </button>
+                </div>
+                <button onclick="closeModals()" class="mt-8 text-xs text-gray-500 uppercase tracking-widest hover:text-white transition-colors underline underline-offset-4">Annuler</button>
+            </div>
+        </div>
+
+        <!-- NOUVEAU : Modal Instructions Copie -->
+        <div id="modal-copy-instructions" class="hidden bg-[#050505] w-full max-w-md modal-enter relative border border-gray-800" role="dialog" aria-modal="true">
+            <div class="absolute top-0 left-0 w-full h-1 bg-white"></div>
+            <div class="p-8 sm:p-10 relative z-10 text-center">
+                <div class="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl mb-6 mx-auto">
+                    <i class="ph-bold ph-check"></i>
+                </div>
+                <h3 class="text-2xl font-black text-white uppercase tracking-tight mb-4">Message copié !</h3>
+                <p class="text-sm text-gray-400 font-light leading-relaxed mb-8">Le contenu de votre message a bien été copié dans votre presse-papier. Voici la marche à suivre :</p>
+                
+                <div class="space-y-5 text-left mb-8">
+                    <div class="flex items-start gap-4 border-l border-gray-800 pl-4">
+                        <span class="text-white font-bold mt-0.5">01.</span>
+                        <span class="text-sm text-gray-400">Ouvrez votre service de messagerie habituel.</span>
+                    </div>
+                    <div class="flex items-start gap-4 border-l border-gray-800 pl-4">
+                        <span class="text-white font-bold mt-0.5">02.</span>
+                        <span class="text-sm text-gray-400">Créez un nouveau mail à destination de <strong class="text-white tracking-wider">setiao@ik.me</strong>.</span>
+                    </div>
+                    <div class="flex items-start gap-4 border-l border-gray-800 pl-4">
+                        <span class="text-white font-bold mt-0.5">03.</span>
+                        <span class="text-sm text-gray-400">Collez le contenu dans le message (<kbd class="px-1.5 py-0.5 border border-gray-600 rounded bg-gray-800 text-xs text-white">Ctrl</kbd> + <kbd class="px-1.5 py-0.5 border border-gray-600 rounded bg-gray-800 text-xs text-white">V</kbd>).</span>
+                    </div>
+                </div>
+
+                <button onclick="closeModals()" class="w-full bg-white text-black font-bold py-4 px-6 text-xs uppercase tracking-widest hover:bg-gray-200 transition-colors">
+                    J'ai compris
+                </button>
+            </div>
+        </div>
+
     </div>
 
     <!-- Notification Toast -->
@@ -883,6 +945,12 @@
             const modal = document.getElementById(modalId);
             if (!modal) return;
             
+            // Si une autre modale est déjà ouverte, on la masque d'abord
+            if (activeModalId && activeModalId !== modalId) {
+                document.getElementById(activeModalId).classList.add('hidden');
+                document.getElementById(activeModalId).classList.remove('modal-enter-active');
+            }
+
             overlay.classList.remove('hidden');
             overlay.classList.add('flex');
             modal.classList.remove('hidden');
@@ -927,23 +995,72 @@
             setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
         }
 
-        // Formulaire Contact Mailto
+        // Formulaire Contact Mailto + Webmail
+        let pendingEmailData = {};
+
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault(); 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
+            // Sauvegarder les données avant de choisir le client mail
+            pendingEmailData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
             
-            const emailBody = `De : ${name} (${email})\n\nMessage :\n${message}`;
-            const mailtoLink = `mailto:setiao@ik.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-            
-            window.location.href = mailtoLink;
-            showToast("📧 Ouverture de votre messagerie en cours...");
-            
-            quizContext = "";
-            this.reset(); 
+            // Ouvrir la modale de choix
+            openModal('modal-mail-choice');
         });
+
+        function sendVia(provider) {
+            const dest = "setiao@ik.me";
+            const subjectText = pendingEmailData.subject;
+            const bodyText = `De : ${pendingEmailData.name} (${pendingEmailData.email})\n\nMessage :\n${pendingEmailData.message}`;
+            
+            const subject = encodeURIComponent(subjectText);
+            const body = encodeURIComponent(bodyText);
+            
+            if (provider === 'copy') {
+                // Génération du texte à copier
+                const copyText = `Sujet : ${subjectText}\n\n${bodyText}`;
+                
+                // Copie dans le presse-papier
+                const textArea = document.createElement("textarea");
+                textArea.value = copyText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // Ouvre la fenêtre pop-up d'instructions
+                openModal('modal-copy-instructions');
+                
+                document.getElementById('contactForm').reset();
+                quizContext = "";
+                return;
+            }
+            
+            let url = "";
+            if (provider === 'default') {
+                url = `mailto:${dest}?subject=${subject}&body=${body}`;
+                window.location.href = url;
+            } else {
+                // Liens de composition spécifiques aux Webmails
+                if (provider === 'gmail') url = `https://mail.google.com/mail/?view=cm&fs=1&to=${dest}&su=${subject}&body=${body}`;
+                if (provider === 'outlook') url = `https://outlook.live.com/mail/0/deeplink/compose?to=${dest}&subject=${subject}&body=${body}`;
+                if (provider === 'yahoo') url = `https://compose.mail.yahoo.com/?to=${dest}&subject=${subject}&body=${body}`;
+                
+                // Ouvre dans un nouvel onglet pour les webmails
+                window.open(url, '_blank');
+            }
+
+            closeModals();
+            showToast("📧 Ouverture de votre messagerie...");
+            
+            // Réinitialisation
+            document.getElementById('contactForm').reset();
+            quizContext = "";
+        }
 
         // Quizz Interactif Architecture
         const quizData = [
