@@ -193,7 +193,7 @@
                     </a>
                     
                     <!-- Bouton d'ouverture du CV (Flat Design) -->
-                    <a href="XF_SE_TIAO_ChefdeProjetAgile_2026.pdf" target="_blank" rel="noopener noreferrer" class="bg-white hover:bg-gray-200 text-black px-6 py-2.5 text-xs uppercase tracking-[0.1em] font-bold transition-all duration-300 flex items-center gap-2 border border-white" aria-label="Ouvrir le CV PDF dans un nouvel onglet">
+                    <a href="XF_SE_TIAO_ChefdeProjetAgile_GenAI_2026.pdf" target="_blank" rel="noopener noreferrer" class="bg-white hover:bg-gray-200 text-black px-6 py-2.5 text-xs uppercase tracking-[0.1em] font-bold transition-all duration-300 flex items-center gap-2 border border-white" aria-label="Ouvrir le CV PDF dans un nouvel onglet">
                         <i class="ph ph-arrow-up-right text-lg"></i> CV
                     </a>
                 </nav>
@@ -212,7 +212,7 @@
             <a href="#certifications" class="block px-4 py-3 text-xs uppercase tracking-[0.2em] font-medium text-gray-400 hover:text-white border-l-2 border-transparent hover:border-white transition-all">Certifications</a>
             <a href="#quizz" onclick="showToast('🎯 Structurons d\'abord votre besoin via ce processus de qualification.')" class="block px-4 py-3 text-xs uppercase tracking-[0.2em] font-medium text-gray-400 hover:text-white border-l-2 border-transparent hover:border-white transition-all">Contact</a>
             
-            <a href="XF_SE_TIAO_ChefdeProjetAgile_2026.pdf" target="_blank" rel="noopener noreferrer" class="w-full mt-6 bg-white hover:bg-gray-200 text-black px-4 py-3 text-xs uppercase tracking-[0.1em] font-bold flex items-center justify-center gap-2 transition-colors">
+            <a href="XF_SE_TIAO_ChefdeProjetAgile_GenAI_2026.pdf" target="_blank" rel="noopener noreferrer" class="w-full mt-6 bg-white hover:bg-gray-200 text-black px-4 py-3 text-xs uppercase tracking-[0.1em] font-bold flex items-center justify-center gap-2 transition-colors">
                 <i class="ph ph-arrow-up-right text-lg"></i> Consulter mon CV
             </a>
         </div>
@@ -341,6 +341,24 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
+                    <!-- Carte Architecturale Nouvelle (OPEN) -->
+                    <article class="arch-panel p-8 sm:p-10 flex flex-col h-full group relative overflow-hidden" tabindex="0">
+                        <div class="absolute top-0 left-0 w-1 h-0 bg-white transition-all duration-300 group-hover:h-full"></div>
+                        
+                        <div class="flex justify-between items-start mb-8">
+                            <div class="w-12 h-12 border border-gray-700 flex items-center justify-center text-2xl text-white group-hover:bg-white group-hover:text-black transition-colors">
+                                <i class="ph-light ph-arrows-clockwise"></i>
+                            </div>
+                            <span class="text-xs font-bold text-gray-500 uppercase tracking-[0.2em]">2026-Présent</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2 uppercase tracking-wide">Consultant Agile</h3>
+                        <p class="text-xs text-gray-500 font-medium mb-6 uppercase tracking-[0.1em] border-b border-gray-800 pb-4">OPEN • Transformation</p>
+                        <p class="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-light">Accompagnement agile/RGAA, transfert de savoirs structuré, accélération de la maturité Scrum et pilotage de l'amélioration continue.</p>
+                        <button onclick="openModal('modal-open')" class="mt-auto self-start text-xs uppercase tracking-[0.15em] text-white font-bold hover:text-gray-400 transition-colors build-line py-2 flex items-center gap-2" aria-label="Voir les détails">
+                            Détails du projet <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </article>
+
                     <!-- Carte Architecturale 1 -->
                     <article class="arch-panel p-8 sm:p-10 flex flex-col h-full group relative overflow-hidden" tabindex="0">
                         <div class="absolute top-0 left-0 w-1 h-0 bg-white transition-all duration-300 group-hover:h-full"></div>
@@ -414,29 +432,29 @@
                     </article>
                     
                     <!-- Carte Mentoring Stricte -->
-                    <article class="bg-white border border-white p-8 sm:p-10 flex flex-col h-full text-black sm:col-span-2 lg:col-span-2 relative overflow-hidden group hover:-translate-y-1 transition-transform" tabindex="0">
+                    <article class="bg-white border border-white p-8 sm:p-10 flex flex-col h-full text-black relative overflow-hidden group hover:-translate-y-1 transition-transform" tabindex="0">
                         <!-- Motif architectural en filigrane -->
                         <div class="absolute -right-20 -bottom-20 w-64 h-64 border border-gray-200 opacity-20 rotate-45 pointer-events-none">
                             <div class="absolute top-4 left-4 right-4 bottom-4 border border-gray-200"></div>
                             <div class="absolute top-8 left-8 right-8 bottom-8 border border-gray-200"></div>
                         </div>
 
-                        <div class="flex items-start gap-6 mb-6 relative z-10">
-                            <div class="w-14 h-14 bg-black flex items-center justify-center text-3xl text-white">
+                        <div class="flex items-start gap-4 mb-6 relative z-10">
+                            <div class="w-14 h-14 bg-black flex items-center justify-center text-3xl text-white shrink-0">
                                 <i class="ph-light ph-chalkboard-teacher"></i>
                             </div>
                             <div>
-                                <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight mb-1">Consultant Agile & Mentor</h3>
-                                <p class="text-xs text-gray-500 font-bold uppercase tracking-[0.2em]">Transfert de savoirs</p>
+                                <h3 class="text-xl sm:text-2xl font-black uppercase tracking-tight mb-1">Consultant & Mentor</h3>
+                                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em]">Transfert de savoirs</p>
                             </div>
                         </div>
                         <p class="text-gray-700 text-sm sm:text-base mb-8 relative z-10 leading-relaxed max-w-3xl">
-                            Au-delà du delivery, je m'investis dans l'accompagnement des équipes (RGAA, agilité) et le mentoring académique (Jury BTS SIO, Institut Limayrac). J'ai également enseigné le Hip-Hop pendant 10 ans, développant discipline et créativité.
+                            Au-delà du delivery, je m'investis dans l'accompagnement des équipes (RGAA, agilité) et le mentoring académique (Jury BTS SIO, Institut Limayrac). J'ai enseigné le Hip-Hop pendant 10 ans.
                         </p>
-                        <div class="mt-auto pt-6 border-t border-gray-200 flex flex-wrap gap-3 relative z-10">
-                            <span class="px-3 py-1 border border-black text-xs font-bold uppercase tracking-widest text-black">Servant Leadership</span>
-                            <span class="px-3 py-1 border border-black text-xs font-bold uppercase tracking-widest text-black">Coaching</span>
-                            <span class="px-3 py-1 border border-black text-xs font-bold uppercase tracking-widest text-black">Amélioration Continue</span>
+                        <div class="mt-auto pt-6 border-t border-gray-200 flex flex-wrap gap-2 relative z-10">
+                            <span class="px-2 py-1 border border-black text-[10px] font-bold uppercase tracking-widest text-black">Servant Leader</span>
+                            <span class="px-2 py-1 border border-black text-[10px] font-bold uppercase tracking-widest text-black">Coaching</span>
+                            <span class="px-2 py-1 border border-black text-[10px] font-bold uppercase tracking-widest text-black">Amélioration</span>
                         </div>
                     </article>
 
@@ -700,7 +718,46 @@
     <!-- MODALS POUR LES DETAILS DE PROJETS (THEME ARCHITECTURE) -->
     <div id="modal-overlay" class="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 hidden items-center justify-center p-4 sm:p-8 transition-opacity w-full h-full" aria-hidden="true">
         
-        <!-- Modal Blueprint -->
+        <!-- Modal Open -->
+        <div id="modal-open" class="hidden bg-[#050505] w-full max-w-3xl max-h-[85vh] sm:max-h-[90vh] overflow-y-auto modal-enter relative border border-gray-800" role="dialog" aria-modal="true" aria-labelledby="modal-open-title">
+            <div class="absolute top-0 left-0 w-full h-1 bg-white"></div>
+            <div class="p-8 sm:p-12 relative">
+                <!-- Grille fond modale -->
+                <div class="absolute inset-0 bg-grid opacity-50 z-0"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex justify-between items-start mb-10 pr-12">
+                        <div>
+                            <div class="flex items-center gap-4 mb-4">
+                                <span class="w-8 h-px bg-gray-600"></span>
+                                <span class="text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em]">Jan 2026 - Aujourd'hui</span>
+                            </div>
+                            <h2 id="modal-open-title" class="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight mb-2">Transformation Agile</h2>
+                            <p class="text-gray-400 font-medium text-sm tracking-widest uppercase">Consultant Agile en Transformation (OPEN)</p>
+                        </div>
+                    </div>
+                    <button onclick="closeModals()" class="absolute top-0 right-0 text-white bg-black border border-gray-800 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center transition-colors" aria-label="Fermer la modale">
+                        <i class="ph-bold ph-x text-xl"></i>
+                    </button>
+                    
+                    <div class="space-y-6 text-sm text-gray-400 font-light leading-relaxed">
+                        <p class="text-white text-base"><strong>Contexte :</strong> Accompagnement d'équipes et transfert de savoirs structuré vers l'autonomie et l'excellence agile.</p>
+                        
+                        <div class="w-full h-px bg-gray-800 my-6"></div>
+
+                        <ul class="list-none space-y-4">
+                            <li class="flex gap-4 items-start"><span class="text-white font-bold mt-0.5">01.</span> <span>Accompagnement agile/RGAA des équipes, avec un positionnement de coach expert et accessible.</span></li>
+                            <li class="flex gap-4 items-start"><span class="text-white font-bold mt-0.5">02.</span> <span>Transfert de savoirs structuré pour accélérer la maturité Scrum via un mentoring individualisé.</span></li>
+                            <li class="flex gap-4 items-start"><span class="text-white font-bold mt-0.5">03.</span> <span>Contribution à l'amélioration continue organisationnelle (rédaction de supports, suivi du ROI).</span></li>
+                            <li class="flex gap-4 items-start"><span class="text-white font-bold mt-0.5">04.</span> <span>Pilotage et promotion de la culture agile au sein des équipes.</span></li>
+                            <li class="flex gap-4 items-start"><span class="text-white font-bold mt-0.5">05.</span> <span>Écoute active et adaptation des approches pédagogiques selon les différents contextes.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Blueprint (CNES) -->
         <div id="modal-cnes" class="hidden bg-[#050505] w-full max-w-3xl max-h-[85vh] sm:max-h-[90vh] overflow-y-auto modal-enter relative border border-gray-800" role="dialog" aria-modal="true" aria-labelledby="modal-cnes-title">
             <div class="absolute top-0 left-0 w-full h-1 bg-white"></div>
             <div class="p-8 sm:p-12 relative">
