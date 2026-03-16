@@ -595,8 +595,8 @@
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="text-center mb-12 sm:mb-16">
                     <span class="inline-block px-4 py-1 border border-white text-white text-xs font-bold uppercase tracking-[0.3em] mb-6">Phase de qualification</span>
-                    <h2 class="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">Évaluons notre <br><span class="text-transparent" style="-webkit-text-stroke: 1px white;">Compatibilité</span></h2>
-                    <p class="text-sm sm:text-base text-gray-400 font-light max-w-lg mx-auto">5 questions structurées pour cadrer l'architecture de votre besoin et affiner notre future prise de contact.</p>
+                    <h2 class="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">Cadrons votre <br><span class="text-transparent" style="-webkit-text-stroke: 1px white;">Besoin</span></h2>
+                    <p class="text-sm sm:text-base text-gray-400 font-light max-w-lg mx-auto">5 questions structurées pour qualifier votre proposition (mission, contrat, organisation) et faciliter notre échange.</p>
                 </div>
 
                 <div class="arch-panel p-6 sm:p-12 min-h-[450px] flex flex-col relative">
@@ -613,7 +613,7 @@
                     </div>
 
                     <div id="quiz-question-container" class="flex-grow flex flex-col justify-center animate-fade-in-up">
-                        <h3 id="quiz-question-text" class="text-xl sm:text-2xl md:text-3xl font-light text-white mb-10 text-center tracking-wide leading-relaxed">Quel est votre principal défi actuel ?</h3>
+                        <h3 id="quiz-question-text" class="text-xl sm:text-2xl md:text-3xl font-light text-white mb-10 text-center tracking-wide leading-relaxed">Quel est l'objectif principal de votre besoin ?</h3>
                         <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <!-- JS injects here -->
                         </div>
@@ -1129,13 +1129,13 @@
             quizContext = "";
         }
 
-        // Quizz Interactif Architecture
+        // Quizz Interactif Orienté Recruteur
         const quizData = [
-            { question: "Quel est votre principal défi actuel ?", options: ["Accélérer et sécuriser le Delivery", "Transformation Agile à l'échelle", "Cybersécurité & Résilience IT", "Optimisation des processus (ITSM)", "Autre (à préciser)"] },
-            { question: "Quelle est la taille de l'environnement/équipe à accompagner ?", options: ["1 à 3 Squads (jusqu'à 25 pers.)", "Tribu / Train (50+ pers.)", "Direction complète (DSI)", "Autre (à préciser)"] },
-            { question: "Quelle méthodologie privilégiez-vous aujourd'hui ?", options: ["Scrum (pur ou adapté)", "Kanban / Flux continu", "Framework à l'échelle (SAFe...)", "Hybride (Agile/Cycle en V)", "Autre (à préciser)"] },
-            { question: "Quel est votre écosystème technique dominant ?", options: ["Atlassian (Jira / Confluence)", "Microsoft (M365 / Azure / Teams)", "ServiceNow / BMC", "Multi-environnements complexes", "Autre (à préciser)"] },
-            { question: "Sous quel délai souhaitez-vous démarrer la collaboration ?", options: ["Dès que possible (Urgent)", "Dans le mois à venir", "D'ici 3 mois", "Simple prise de contact / Veille"] }
+            { question: "Quel est l'objectif principal de votre besoin ?", options: ["Renforcer le Delivery (Scrum Master / PO)", "Mener une transformation Agile à l'échelle", "Piloter un projet critique (Cyber, ITSM)", "Autre contexte (à préciser)"] },
+            { question: "Quel type de contrat proposez-vous ?", options: ["CDI", "Mission Freelance (B2B)", "Management de transition / CDD", "Flexible / À définir ensemble"] },
+            { question: "Quelle est l'organisation de travail envisagée ?", options: ["Hybride (Mixte Télétravail/Site)", "Full Remote (100% Télétravail)", "Sur site principalement", "À discuter"] },
+            { question: "Quel est votre écosystème technique ou méthodologique ?", options: ["Scrum / Atlassian (Jira, Confluence)", "Framework à l'échelle (SAFe...)", "Microsoft 365 / Azure / Cyber", "Complexe / Multi-environnements"] },
+            { question: "Comment souhaitez-vous que l'on procède pour la suite ?", options: ["Planifier un entretien visio rapidement", "Organiser une rencontre physique", "Échanger d'abord par téléphone", "Je vous envoie plus de détails par mail"] }
         ];
 
         let currentQuizStep = 0;
@@ -1224,12 +1224,12 @@
         }
 
         function transferQuizToContact() {
-            quizContext = "STRUCTURE DU BESOIN :\n" +
-                          `• Défi : ${userAnswers[0]}\n` +
-                          `• Équipe : ${userAnswers[1]}\n` +
-                          `• Méthode : ${userAnswers[2]}\n` +
-                          `• Outils : ${userAnswers[3]}\n` +
-                          `• Délai : ${userAnswers[4]}`;
+            quizContext = "CONTEXTE DE L'OPPORTUNITÉ :\n" +
+                          `• Besoin : ${userAnswers[0]}\n` +
+                          `• Contrat : ${userAnswers[1]}\n` +
+                          `• Organisation : ${userAnswers[2]}\n` +
+                          `• Écosystème : ${userAnswers[3]}\n` +
+                          `• Prochaine étape : ${userAnswers[4]}`;
 
             updateContactMessage();
 
